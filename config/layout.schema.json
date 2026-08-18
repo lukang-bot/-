@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://asrs.local/schemas/layout.schema.json",
+  "title": "ASRS Digital Twin Layout",
+  "type": "object",
+  "required": ["productId", "siteId", "scene", "cargoTypes", "features"],
+  "properties": {
+    "productId": { "type": "string" },
+    "siteId": { "type": "string" },
+    "industryPack": { "type": "string" },
+    "scene": {
+      "type": "object",
+      "required": ["storageRootPath", "cargoTemplateRootPath"],
+      "properties": {
+        "addressablesKey": { "type": "string" },
+        "rootPath": { "type": "string" },
+        "storageRootPath": { "type": "string" },
+        "cargoTemplateRootPath": { "type": "string" }
+      }
+    },
+    "cargoTypes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "prefab"],
+        "properties": {
+          "id": { "type": "string" },
+          "aliases": { "type": "array", "items": { "type": "string" } },
+          "prefab": { "type": "string" },
+          "defaultFallback": { "type": "boolean" }
+        }
+      }
+    },
+    "areas": { "type": "array" },
+    "storageSlots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "sceneObject"],
+        "properties": {
+          "code": { "type": "string", "description": "必须与场景物体名、Redis Code 一致" },
+          "areaId": { "type": "string" },
+          "sceneObject": { "type": "string" },
+          "row": { "type": "integer" },
+          "bay": { "type": "integer" },
+          "level": { "type": "integer" }
+        }
+      }
+    },
+    "conveyors": { "type": "array" },
+    "cranes": { "type": "array" },
+    "gates": { "type": "array" },
+    "interaction": { "type": "object" },
+    "features": {
+      "type": "object",
+      "properties": {
+        "storageCargoVisual": { "type": "boolean" },
+        "taskAnimation": { "type": "boolean" },
+        "inventoryKpi": { "type": "boolean" },
+        "equipAlarm": { "type": "boolean" },
+        "conveyorIdTip": { "type": "boolean" },
+        "gateLabels": { "type": "boolean" }
+      }
+    }
+  }
+}

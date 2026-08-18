@@ -1,0 +1,91 @@
+{
+  "$schema": "./layout.schema.json",
+  "productId": "asrs-digital-twin",
+  "siteId": "hejin-semi-demo",
+  "industryPack": "semiconductor-ingot",
+  "scene": {
+    "addressablesKey": "MainScene",
+    "rootPath": "Scene/Commom",
+    "storageRootPath": "Scene/Commom/BoxSystem/半成品",
+    "cargoTemplateRootPath": "Scene/Commom/BoxSystem"
+  },
+  "cargoTypes": [
+    { "id": "空载具", "aliases": ["空托盘", "空托", "保丽龙载具"], "prefab": "空载具" },
+    { "id": "保利龙", "aliases": ["保丽龙", "保利龙载具"], "prefab": "保利龙" },
+    { "id": "晶棒", "aliases": ["晶棒托盘", "晶棒载具"], "prefab": "晶棒", "defaultFallback": true },
+    { "id": "AS-CUT", "aliases": ["S-CUT", "Ascut", "ASCUT"], "prefab": "AS-CUT" }
+  ],
+  "areas": [
+    {
+      "id": "NA-01",
+      "displayName": "A巷道-左",
+      "lane": 1,
+      "side": "left"
+    },
+    {
+      "id": "NA-02",
+      "displayName": "A巷道-右",
+      "lane": 1,
+      "side": "right"
+    }
+  ],
+  "storageSlots": [
+    {
+      "code": "01-011-001",
+      "areaId": "NA-01",
+      "sceneObject": "01-011-001",
+      "row": 11,
+      "bay": 1,
+      "level": 1
+    },
+    {
+      "code": "01-016-002",
+      "areaId": "NA-01",
+      "sceneObject": "01-016-002",
+      "row": 16,
+      "bay": 2,
+      "level": 1
+    }
+  ],
+  "conveyors": [
+    {
+      "id": "1004",
+      "sceneObject": "1004",
+      "mergedDisplayId": "1004&1005",
+      "mergedWith": ["1005"],
+      "floor": 1
+    },
+    {
+      "id": "1005",
+      "sceneObject": "1005",
+      "mergedDisplayId": "1004&1005",
+      "mergedWith": ["1004"],
+      "floor": 1
+    }
+  ],
+  "cranes": [
+    {
+      "id": "1",
+      "sceneObject": "Crane_1",
+      "lane": 1,
+      "axis": { "travel": "Z", "lift": "Y", "fork": "X" }
+    }
+  ],
+  "gates": [
+    { "sceneObject": "AWA1202_P02", "label": "入口", "color": "#1AFF33" },
+    { "sceneObject": "AWA1202_P01", "label": "出口", "color": "#1AFF33" }
+  ],
+  "interaction": {
+    "cargoInfoTrigger": "doubleClick",
+    "conveyorIdTrigger": "singleClick",
+    "blankClickHidesTips": true
+  },
+  "features": {
+    "storageCargoVisual": true,
+    "taskAnimation": true,
+    "inventoryKpi": true,
+    "equipAlarm": true,
+    "conveyorIdTip": true,
+    "gateLabels": true
+  }
+}
