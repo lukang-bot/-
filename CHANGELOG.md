@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2
+
+- 固化设备/货物交互标准（`INTERACTION.md`）：双击打开详情 UI；Unity 侧 BoxCollider + 射线 + Panel/数据绑定。
+- layout `interaction.bindings` / `doubleClickInfoUi`；契约增加 `InteractableKind`、`InteractablePanelData`。
+
 ## 0.2.1
 
 - 新增可选功能 **agvRealtime**：Hub 位姿跟踪、CAD→场景坐标、载货策略由 pack 配置（`features/agv-realtime.md`，`contracts/AgvRealtime.cs`）。
