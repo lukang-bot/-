@@ -8,7 +8,13 @@ Runtime/                          # 产品内核（跨项目，无货种词）
 ├── Net/
 │   ├── HubClient.cs              # 连接、Invoke/On；可选方法失败则跳过
 │   └── HubMethodNames.cs         # ← contracts/DtHubMethods
-├── Interaction/                  # 射线、单击/双击、点空白关 Tip
+├── Interaction/                  # 详见 INTERACTION.md
+│   ├── InteractableTarget.cs     # kind + identity
+│   ├── ClickColliderUtil.cs      # 仅 BoxCollider
+│   ├── InteractionRaycaster.cs
+│   ├── DoubleClickGate.cs        # 默认 0.3s
+│   ├── InteractionRouter.cs      # Kind → Panel + Query
+│   └── HoverHighlightBinder.cs
 ├── Storage/
 │   ├── StorageOccupancy.cs       # ← contracts，rule 来自 pack
 │   ├── SlotRegistry.cs           # Code → 场景物体（读 layout）
@@ -43,6 +49,8 @@ ProjectOverlay/                   # 仅本现场：场景、美术、极少脚�
 
 | 模块 | 做什么 | 不做什么 |
 |---|---|---|
+| InteractionRouter | 双击后按 Kind 开 Panel 并拉数 | 不解析网格 |
+| ClickColliderUtil | 挂/修 BoxCollider | 不用 MeshCollider 点击 |
 | HubClient | 拉全量、收推送 | 不解占用、不写死方法是否必须成功 |
 | StorageOccupancy | 按 pack.rule 判断空/有货 | 不决定 Prefab、不写死 token |
 | CargoVisualBinder | match → Prefab，挂到货位 | 不写死货物名 |
@@ -60,7 +68,9 @@ ProjectOverlay/                   # 仅本现场：场景、美术、极少脚�
 | taskAnimation | 任务只进列表 |
 | inventoryKpi | 无库存图 |
 | equipAlarm | 设备不闪报警色 |
+| doubleClickInfoUi | 双击不打开详情 UI |
 | conveyorIdTip | 单击线体无编号 |
+| hoverHighlight | 悬停无高亮 |
 | gateLabels | 无出入口字 |
 | agvRealtime | 不订阅 AGV、不跑车上跟踪 |
 | reverseControl | 报警页无反控按钮 |

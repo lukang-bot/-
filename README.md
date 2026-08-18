@@ -20,6 +20,7 @@ Runtime **不得**出现业务词（晶棒、klp、某设备 ID）。这些只�
 ├── README.md
 ├── MODULES.md
 ├── HUB_AND_REDIS.md
+├── INTERACTION.md             ← 双击交互 / BoxCollider / 射线 / UI（Unity）
 ├── CHANGELOG.md
 ├── features/
 │   └── agv-realtime.md        ← 可选：AGV 实时跟踪
@@ -30,6 +31,11 @@ Runtime **不得**出现业务词（晶棒、klp、某设备 ID）。这些只�
     ├── generic/               ← 默认包（可配占用规则，无货种假设）
     └── semiconductor-ingot/   ← 合晶半成品示例包（不是内核）
 ```
+
+## 交互（已定）
+
+详情类能力统一：**双击** CV / 堆垛机 / RGV / AGV / 线体或货位货物 → 对应 UI → 数据接口填充。  
+Unity：`BoxCollider` → 射线双击 → Panel。详见 [INTERACTION.md](./INTERACTION.md)。
 
 ## 任意货种
 

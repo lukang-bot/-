@@ -114,4 +114,35 @@ namespace Asrs.DigitalTwin.Contracts
         public const string RealTimeWorkOrder = "RealTimeWorkOrder";
         public const string RealTimeWorkOrderSend = "RealTimeWorkOrderSend";
     }
+
+    /// <summary>可双击交互对象种类。详见 INTERACTION.md。</summary>
+    public enum InteractableKind
+    {
+        StorageCargo = 0,
+        LineCargo = 1,
+        Conveyor = 2,
+        Crane = 3,
+        Rgv = 4,
+        Agv = 5,
+        Shuttle = 6,
+        Unit = 7,
+        Other = 8,
+    }
+
+    /// <summary>打开详情面板的最小上下文。</summary>
+    public class InteractablePanelData
+    {
+        public string Kind { get; set; } = string.Empty;
+        public string Identity { get; set; } = string.Empty;
+        public string DisplayName { get; set; } = string.Empty;
+    }
+
+    /// <summary>交互默认参数。</summary>
+    public static class InteractionDefaults
+    {
+        public const float DoubleClickSeconds = 0.3f;
+        public const string PrimaryTrigger = "doubleClick";
+        /// <summary>点击碰撞体策略：仅 BoxCollider；禁止 MeshCollider 用于 WebGL 点击。</summary>
+        public const string ClickColliderPolicy = "BoxColliderOnly";
+    }
 }

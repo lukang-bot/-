@@ -37,16 +37,31 @@
     { "sceneObject": "GateOut", "label": "出口", "color": "#1AFF33" }
   ],
   "interaction": {
-    "cargoInfoTrigger": "doubleClick",
+    "primaryTrigger": "doubleClick",
+    "doubleClickSeconds": 0.3,
+    "blankClickHidesTips": true,
+    "ignoreWhenPointerOverUi": true,
+    "raycastMaxDistance": 200,
+    "hoverHighlight": true,
     "conveyorIdTrigger": "singleClick",
-    "blankClickHidesTips": true
+    "bindings": {
+      "StorageCargo": { "panel": "CargoInfoPanel", "query": "WmsStockDtoByLocation" },
+      "LineCargo": { "panel": "CargoInfoPanel", "query": "WmsStockDtoByTray" },
+      "Conveyor": { "panel": "ConveyorInfoPanel", "query": "ConveyorDataInfo" },
+      "Crane": { "panel": "EquipInfoPanel", "query": "CraneDataInfo" },
+      "Rgv": { "panel": "EquipInfoPanel", "query": "EquipStatusInfo" },
+      "Agv": { "panel": "EquipInfoPanel", "query": "EquipStatusInfo" },
+      "Shuttle": { "panel": "EquipInfoPanel", "query": "EquipStatusInfo" }
+    }
   },
   "features": {
     "storageCargoVisual": true,
     "taskAnimation": true,
     "inventoryKpi": true,
     "equipAlarm": true,
+    "doubleClickInfoUi": true,
     "conveyorIdTip": true,
+    "hoverHighlight": true,
     "gateLabels": true,
     "agvRealtime": false,
     "reverseControl": false,

@@ -80,7 +80,30 @@
     "conveyors": { "type": "array" },
     "cranes": { "type": "array" },
     "gates": { "type": "array" },
-    "interaction": { "type": "object" },
+    "interaction": {
+      "type": "object",
+      "description": "详见 INTERACTION.md。详情主路径固定为 doubleClick。",
+      "properties": {
+        "primaryTrigger": { "type": "string", "enum": ["doubleClick"] },
+        "doubleClickSeconds": { "type": "number", "default": 0.3 },
+        "blankClickHidesTips": { "type": "boolean" },
+        "ignoreWhenPointerOverUi": { "type": "boolean" },
+        "raycastMaxDistance": { "type": "number" },
+        "hoverHighlight": { "type": "boolean" },
+        "conveyorIdTrigger": { "type": "string", "enum": ["singleClick", "none"] },
+        "bindings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["panel", "query"],
+            "properties": {
+              "panel": { "type": "string" },
+              "query": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
     "features": {
       "type": "object",
       "properties": {
@@ -88,7 +111,9 @@
         "taskAnimation": { "type": "boolean" },
         "inventoryKpi": { "type": "boolean" },
         "equipAlarm": { "type": "boolean" },
+        "doubleClickInfoUi": { "type": "boolean" },
         "conveyorIdTip": { "type": "boolean" },
+        "hoverHighlight": { "type": "boolean" },
         "gateLabels": { "type": "boolean" },
         "agvRealtime": { "type": "boolean" },
         "reverseControl": { "type": "boolean" },
