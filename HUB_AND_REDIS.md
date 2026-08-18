@@ -50,7 +50,7 @@ WebGL：
 | `PCConveyorData` / `PCConveyorDataInfo` | 板链组 |
 | `CodeDiskData` / `CodeDiskDataInfo` | 码盘供料 |
 | `AlarmData` | 设备报警 |
-| `AGVStatusSend` / `AGVTaskSend` | AGV 位姿与上下货 |
+| `AGVStatusSend` / `AGVTaskSend` | AGV 位姿与任务；详见 `features/agv-realtime.md` |
 | `ShuttleData` / `ShuttleDataInfo` | RGV/穿梭车 |
 | `DayInAndOut*` / `HourInAndOut*` / `StockTaking*` | WMS 报表 |
 | `RealTimeWorkOrder*` | MES 工单 |
@@ -75,7 +75,7 @@ Hash field 名 = 货位 Code = `layout.storageSlots[].code`（若 `sceneObject` 
 
 写入只约定：**有货/无货都能被 pack 的 occupancy 解出来**；不要在产品内核里规定必须写 `Status=exist`。
 
-Optional Redis 示例：AGV 任务/状态 Hash（key 名由现场定，写入 contracts 扩展即可）。
+Optional Redis 示例：AGV 状态/任务 Hash（field=`AGVId`）。车上动画不读 Redis，只跟 Hub 推送。
 
 ## KPI 兼容
 

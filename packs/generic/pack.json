@@ -18,5 +18,10 @@
   "kpiKeys": ["cargo"],
   "hub": {
     "optional": []
+  },
+  "agv": {
+    "loadFrom": "taskStatus",
+    "loadedTaskStatuses": [1],
+    "unloadedTaskStatuses": [2]
   }
 }

@@ -48,7 +48,19 @@
           "id": { "type": "string" },
           "type": { "type": "string" },
           "sceneObject": { "type": "string" },
-          "axis": { "type": "object" }
+          "originRef": { "type": "string", "description": "AGV CAD 原点物体名" },
+          "axis": { "type": "object" },
+          "motion": {
+            "type": "object",
+            "description": "AGV 实时跟踪。见 features/agv-realtime.md",
+            "properties": {
+              "unitsToMeters": { "type": "number" },
+              "cadYToUnityZ": { "type": "boolean" },
+              "moveSpeed": { "type": "number" },
+              "rotateSpeed": { "type": "number" },
+              "cargoChild": { "type": "string" }
+            }
+          }
         }
       }
     },

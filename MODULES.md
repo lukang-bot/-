@@ -18,7 +18,7 @@ Runtime/                          # 产品内核（跨项目，无货种词）
 │   ├── EquipBus.cs               # 按 layout.equips 注册驱动
 │   ├── CraneDriver.cs            # 可选
 │   ├── ConveyorDriver.cs         # 可选
-│   └── AgvDriver.cs              # 可选
+│   └── AgvDriver.cs              # 可选；见 features/agv-realtime.md
 ├── Control/
 │   └── ReverseControlClient.cs   # 可选；HTTP 不是 Hub
 ├── Task/
@@ -48,6 +48,7 @@ ProjectOverlay/                   # 仅本现场：场景、美术、极少脚�
 | CargoVisualBinder | match → Prefab，挂到货位 | 不写死货物名 |
 | SlotRegistry | layout.storageSlots + 场景 | 不调 WMS |
 | EquipBus | 按类型加载驱动 | 现场没有的设备不实例化 |
+| AgvDriver | 位姿跟踪、朝向、载货显隐 | 不规划路径；占用规则不写死 |
 | ReverseControlClient | POST pack 声明的路径 | 不进 SignalR |
 | TaskPlayer | 从 layout 点位做动画 | 不解析行业 KPI |
 
@@ -61,7 +62,7 @@ ProjectOverlay/                   # 仅本现场：场景、美术、极少脚�
 | equipAlarm | 设备不闪报警色 |
 | conveyorIdTip | 单击线体无编号 |
 | gateLabels | 无出入口字 |
-| agvRealtime | 不订阅 AGV |
+| agvRealtime | 不订阅 AGV、不跑车上跟踪 |
 | reverseControl | 报警页无反控按钮 |
 | mesWorkOrder | 无工单面板 |
 | wmsInOut | 无出入库/盘点面板 |

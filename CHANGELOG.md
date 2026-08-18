@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- 新增可选功能 **agvRealtime**：Hub 位姿跟踪、CAD→场景坐标、载货策略由 pack 配置（`features/agv-realtime.md`，`contracts/AgvRealtime.cs`）。
+
 ## 0.2.0
 
 - 内核与行业规则分离：占用判定、货种、KPI 键进入 Industry Pack。

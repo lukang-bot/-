@@ -12,7 +12,7 @@
 
 ## 按现场可选
 
-- [ ] `hub.optional`：本现场实际存在的扩展方法（Unit / AGV / 工单等）
+- [ ] `features.agvRealtime`：有 AGV 则配 `equips[].motion` 与 `pack.agv.loadFrom`
 - [ ] `groups`：合并显示的线体/单元（layout 也可配）
 - [ ] 反控 HTTP：是否需要 `equipmentControlURL`
 - [ ] 货位命名：`codePattern`（三段 WMS / 拼接 AGV / 自由 ID）

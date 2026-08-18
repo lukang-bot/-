@@ -21,6 +21,8 @@ Runtime **不得**出现业务词（晶棒、klp、某设备 ID）。这些只�
 ├── MODULES.md
 ├── HUB_AND_REDIS.md
 ├── CHANGELOG.md
+├── features/
+│   └── agv-realtime.md        ← 可选：AGV 实时跟踪
 ├── contracts/                 ← 内核契约（无行业词）
 ├── config/                    ← layout / runtime 示例与 schema
 └── packs/
@@ -38,6 +40,8 @@ Runtime **不得**出现业务词（晶棒、klp、某设备 ID）。这些只�
 - 空 Status 时可选回退：有 Type 或 Pallet 视为有货
 
 内核只调用 `StorageOccupancy.IsEmpty(dto, rule)`。
+
+可选能力见 `features/`。当前已沉淀：**agvRealtime**（车上坐标跟踪，见 `features/agv-realtime.md`）。
 
 ## 现场最少要满足
 
