@@ -1,0 +1,56 @@
+{
+  "$schema": "./layout.schema.json",
+  "productId": "asrs-digital-twin",
+  "siteId": "demo-site",
+  "industryPack": "generic",
+  "codePattern": "free",
+  "scene": {
+    "addressablesKey": "MainScene",
+    "rootPath": "Scene/Common",
+    "storageRootPath": "Scene/Common/Storage",
+    "cargoTemplateRootPath": "Scene/Common/CargoTemplates"
+  },
+  "areas": [
+    { "id": "LANE-01", "displayName": "巷道1", "lane": 1 }
+  ],
+  "storageSlots": [
+    { "code": "SLOT-A-01-01", "areaId": "LANE-01", "row": 1, "bay": 1, "level": 1 },
+    { "code": "SLOT-A-01-02", "areaId": "LANE-01", "row": 1, "bay": 1, "level": 2 }
+  ],
+  "equips": [
+    {
+      "id": "1",
+      "type": "Crane",
+      "sceneObject": "Crane_1",
+      "axis": { "travel": "Z", "lift": "Y", "fork": "X" }
+    }
+  ],
+  "groups": [
+    {
+      "sceneObject": "CV-1004-1005",
+      "linkedIds": ["1004", "1005"],
+      "displayName": "1004&1005"
+    }
+  ],
+  "gates": [
+    { "sceneObject": "GateIn", "label": "入口", "color": "#1AFF33" },
+    { "sceneObject": "GateOut", "label": "出口", "color": "#1AFF33" }
+  ],
+  "interaction": {
+    "cargoInfoTrigger": "doubleClick",
+    "conveyorIdTrigger": "singleClick",
+    "blankClickHidesTips": true
+  },
+  "features": {
+    "storageCargoVisual": true,
+    "taskAnimation": true,
+    "inventoryKpi": true,
+    "equipAlarm": true,
+    "conveyorIdTip": true,
+    "gateLabels": true,
+    "agvRealtime": false,
+    "reverseControl": false,
+    "mesWorkOrder": false,
+    "wmsInOut": false
+  }
+}

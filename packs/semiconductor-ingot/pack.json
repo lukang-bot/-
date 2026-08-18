@@ -1,0 +1,29 @@
+{
+  "id": "semiconductor-ingot",
+  "displayName": "半导体晶棒半成品（示例，不是内核）",
+  "occupancy": {
+    "mode": "statusEnum",
+    "occupiedStatuses": ["exist", "import", "1", "true"],
+    "emptyStatuses": ["empty", "export", "0", "false"],
+    "fallbackToTypeOrPallet": true
+  },
+  "cargoTypes": [
+    { "id": "空载具", "match": ["空载具", "空托盘", "空托", "保丽龙载具"], "prefab": "空载具" },
+    { "id": "保利龙", "match": ["保利龙", "保丽龙", "保利龙载具"], "prefab": "保利龙" },
+    { "id": "晶棒", "match": ["晶棒", "晶棒托盘", "晶棒载具"], "prefab": "晶棒", "defaultFallback": true },
+    { "id": "AS-CUT", "match": ["AS-CUT", "S-CUT", "Ascut", "ASCUT"], "prefab": "AS-CUT" }
+  ],
+  "kpiKeys": ["晶棒", "AS-CUT"],
+  "legacyKpiMap": {
+    "CrystalBarCount": "晶棒",
+    "AsCutCount": "AS-CUT",
+    "CurrentAvailableCount": "_empty"
+  },
+  "hub": {
+    "optional": []
+  },
+  "sceneHints": {
+    "codePattern": "wms-triple",
+    "exampleCode": "01-011-001"
+  }
+}

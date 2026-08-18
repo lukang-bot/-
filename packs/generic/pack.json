@@ -1,0 +1,22 @@
+{
+  "id": "generic",
+  "displayName": "通用立库（无货种假设）",
+  "occupancy": {
+    "mode": "statusEnum",
+    "occupiedStatuses": ["exist", "import", "occupied", "1", "true"],
+    "emptyStatuses": ["empty", "export", "vacant", "0", "false"],
+    "fallbackToTypeOrPallet": true
+  },
+  "cargoTypes": [
+    {
+      "id": "cargo",
+      "match": ["*"],
+      "prefab": "CargoDefault",
+      "defaultFallback": true
+    }
+  ],
+  "kpiKeys": ["cargo"],
+  "hub": {
+    "optional": []
+  }
+}

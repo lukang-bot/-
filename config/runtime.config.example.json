@@ -1,0 +1,36 @@
+{
+  "httpPath": "http://{HOST}:44332/api/app/user/current-user",
+  "equipDataURL": "http://{HOST}:44332/DT",
+  "equipmentControlURL": "http://{HOST}:19002",
+  "graphURL": "http://{HOST}:9803/",
+  "camera": {
+    "move": {
+      "move_keyboard_speed": 10,
+      "move_mouse_key": 323,
+      "move_mouse_speed": 100
+    },
+    "rotate": {
+      "rotate_mouse_key": 324,
+      "rotate_mouse_speed": 30,
+      "rotate_minXAngle": -45,
+      "rotate_maxAngle": 45
+    },
+    "height": {
+      "up_key": 101,
+      "down_key": 113,
+      "height_speed": 100
+    }
+  },
+  "conveyorSpeed": 0.5,
+  "shuttleSpeed": 2,
+  "craneMoveSpeed": 2,
+  "alarmColor": "255,14,14",
+  "runningColor": "0,255,53",
+  "idleColor": "255,221,0",
+  "notes": [
+    "对应 StreamingAssets/config.json",
+    "UTF-8 禁止带 BOM，否则 LitJson 解析失败",
+    "equipDataURL 是 SignalR Hub；equipmentControlURL 是可选 HTTP 反控，端口通常不同",
+    "现场部署用真实 HOST，不要提交 localhost"
+  ]
+}

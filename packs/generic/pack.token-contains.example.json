@@ -1,0 +1,15 @@
+{
+  "id": "generic-token",
+  "displayName": "示例：Status 含 token 即有货",
+  "occupancy": {
+    "mode": "tokenContains",
+    "hasCargoTokens": ["load", "full", "sku"],
+    "fallbackToTypeOrPallet": false
+  },
+  "cargoTypes": [
+    { "id": "sku", "match": ["sku"], "prefab": "CargoSku", "defaultFallback": true }
+  ],
+  "kpiKeys": ["sku"],
+  "hub": { "optional": [] },
+  "notes": "复制本文件为 pack.json 后按现场改 token 与 prefab。不要把 token 写进 Runtime。"
+}

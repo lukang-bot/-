@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://asrs.local/schemas/layout.schema.json",
+  "title": "ASRS Digital Twin Layout",
+  "type": "object",
+  "required": ["productId", "siteId", "industryPack", "scene", "features"],
+  "properties": {
+    "productId": { "type": "string" },
+    "siteId": { "type": "string" },
+    "industryPack": { "type": "string", "description": "packs/<id> 目录名" },
+    "codePattern": {
+      "type": "string",
+      "description": "free | wms-triple | agv-concat。Runtime 不得假设三段式编号。"
+    },
+    "scene": {
+      "type": "object",
+      "required": ["storageRootPath"],
+      "properties": {
+        "addressablesKey": { "type": "string" },
+        "rootPath": { "type": "string" },
+        "storageRootPath": { "type": "string" },
+        "cargoTemplateRootPath": { "type": "string" }
+      }
+    },
+    "areas": { "type": "array" },
+    "storageSlots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code"],
+        "properties": {
+          "code": { "type": "string", "description": "后端 Code；默认等于场景物体名" },
+          "sceneObject": { "type": "string" },
+          "areaId": { "type": "string" },
+          "row": { "type": "integer" },
+          "bay": { "type": "integer" },
+          "level": { "type": "integer" }
+        }
+      }
+    },
+    "equips": {
+      "type": "array",
+      "description": "本现场实际存在的设备。没有的类型不要写，驱动不加载。",
+      "items": {
+        "type": "object",
+        "required": ["id", "type"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "sceneObject": { "type": "string" },
+          "axis": { "type": "object" }
+        }
+      }
+    },
+    "groups": {
+      "type": "array",
+      "description": "一个场景物体对应多个后端 ID",
+      "items": {
+        "type": "object",
+        "required": ["sceneObject", "linkedIds"],
+        "properties": {
+          "sceneObject": { "type": "string" },
+          "linkedIds": { "type": "array", "items": { "type": "string" } },
+          "displayName": { "type": "string" }
+        }
+      }
+    },
+    "conveyors": { "type": "array" },
+    "cranes": { "type": "array" },
+    "gates": { "type": "array" },
+    "interaction": { "type": "object" },
+    "features": {
+      "type": "object",
+      "properties": {
+        "storageCargoVisual": { "type": "boolean" },
+        "taskAnimation": { "type": "boolean" },
+        "inventoryKpi": { "type": "boolean" },
+        "equipAlarm": { "type": "boolean" },
+        "conveyorIdTip": { "type": "boolean" },
+        "gateLabels": { "type": "boolean" },
+        "agvRealtime": { "type": "boolean" },
+        "reverseControl": { "type": "boolean" },
+        "mesWorkOrder": { "type": "boolean" },
+        "wmsInOut": { "type": "boolean" }
+      }
+    }
+  }
+}
