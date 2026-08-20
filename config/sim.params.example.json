@@ -1,0 +1,38 @@
+{
+  "$schema": "./sim.params.schema.json",
+  "seed": 20260820,
+  "timeScale": 2,
+  "tickHz": 10,
+  "scenario": "inbound-demo.json",
+  "occupancy": {
+    "ratio": 0.35,
+    "refreshSeconds": 15,
+    "pickCargoFromPack": true
+  },
+  "agv": {
+    "enabled": true,
+    "updateHz": 10,
+    "patrol": [
+      {
+        "agvId": 5,
+        "speedUnitsPerSec": 800,
+        "loadAlongPath": true,
+        "points": [
+          { "x": 10000, "y": 10000 },
+          { "x": 50000, "y": 10000 },
+          { "x": 50000, "y": 80000 },
+          { "x": 10000, "y": 80000 }
+        ]
+      }
+    ]
+  },
+  "craneTasks": {
+    "enabled": true,
+    "intervalSeconds": 20,
+    "pickSlotsFromLayout": true
+  },
+  "inventory": {
+    "pushSummary": true,
+    "emptyCountMode": "deriveFromOccupancy"
+  }
+}

@@ -23,13 +23,16 @@ Runtime **不得**出现业务词（晶棒、klp、某设备 ID）。这些只�
 ├── INTERACTION.md             ← 双击交互 / BoxCollider / 射线 / UI（Unity）
 ├── CHANGELOG.md
 ├── features/
-│   └── agv-realtime.md        ← 可选：AGV 实时跟踪
+│   ├── agv-realtime.md        ← 可选：AGV 实时跟踪
+│   ├── scene-builder.md       ← 可选：拖拉拽搭仓
+│   └── simulation.md          ← 可选：MockHub 仿真运行
 ├── contracts/                 ← 内核契约（无行业词）
-├── config/                    ← layout / runtime 示例与 schema
+├── config/                    ← layout / runtime / sim 示例与 schema
+├── scenarios/                 ← 仿真剧本示例
 └── packs/
-    ├── _template.md           ← 新建 pack 检查清单
-    ├── generic/               ← 默认包（可配占用规则，无货种假设）
-    └── semiconductor-ingot/   ← 合晶半成品示例包（不是内核）
+    ├── _template.md
+    ├── generic/
+    └── semiconductor-ingot/
 ```
 
 ## 交互（已定）
@@ -47,7 +50,16 @@ Unity：`BoxCollider` → 射线双击 → Panel。详见 [INTERACTION.md](./INT
 
 内核只调用 `StorageOccupancy.IsEmpty(dto, rule)`。
 
-可选能力见 `features/`。当前已沉淀：**agvRealtime**（车上坐标跟踪，见 `features/agv-realtime.md`）。
+## 可选能力（features/）
+
+| 功能 | 文档 |
+|---|---|
+| agvRealtime | [features/agv-realtime.md](features/agv-realtime.md) |
+| scene-builder | [features/scene-builder.md](features/scene-builder.md) |
+| simulation | [features/simulation.md](features/simulation.md) |
+
+售前路径：**Builder 搭仓 → layout.json → 选 Pack → SimParams/Scenario → Play**。  
+交付路径：同一 Layout + Pack，数据源换成真 Hub。
 
 ## 现场最少要满足
 
@@ -60,3 +72,4 @@ Unity：`BoxCollider` → 射线双击 → Panel。详见 [INTERACTION.md](./INT
 - 不是完整 Unity 工程，不含场景/Prefab/动画实现
 - 不是某一客户的现场仓库备份
 - 合晶、温控阀产线等都只是 Pack + Layout 的实例
+- 仿真不是完整 WCS，不做真实调度与账务

@@ -1,0 +1,52 @@
+{
+  "id": "inbound-demo",
+  "displayName": "简易入库演示",
+  "notes": "仿真时间轴（秒）。MockHub 按 timeScale 换算后回放。坐标单位与 sim.params / AGV motion 一致。",
+  "events": [
+    {
+      "t": 0,
+      "type": "setOccupancyRatio",
+      "ratio": 0.2
+    },
+    {
+      "t": 5,
+      "type": "storageStatus",
+      "items": [
+        { "code": "SLOT-A-01-01", "status": "exist", "type": "cargo", "pallet": "P-1001" }
+      ]
+    },
+    {
+      "t": 8,
+      "type": "agvPose",
+      "agvId": 5,
+      "x": 10000,
+      "y": 10000,
+      "errorCode": 1
+    },
+    {
+      "t": 8,
+      "type": "agvTask",
+      "agvId": 5,
+      "taskId": "SIM-001",
+      "status": 1,
+      "stationNo": "ST-01"
+    },
+    {
+      "t": 30,
+      "type": "taskCreate",
+      "taskCode": "SIM-TASK-1",
+      "startPoint": "SLOT-A-01-01",
+      "endPoint": "SLOT-A-01-02",
+      "taskKind": "Crane",
+      "cargoType": "cargo"
+    },
+    {
+      "t": 60,
+      "type": "agvTask",
+      "agvId": 5,
+      "taskId": "SIM-001",
+      "status": 2,
+      "stationNo": "ST-02"
+    }
+  ]
+}

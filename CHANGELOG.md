@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.3
+
+- 新增 **scene-builder** / **simulation** 功能说明：拖拉拽搭仓写 layout，MockHub + SimParams 跑简化仿真。
+- 补充 `config/sim.params.schema.json`、`sim.params.example.json`、`scenarios/inbound-demo.json`。
+
 ## 0.2.2
 
 - 固化设备/货物交互标准（`INTERACTION.md`）：双击打开详情 UI；Unity 侧 BoxCollider + 射线 + Panel/数据绑定。

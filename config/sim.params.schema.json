@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://asrs.local/schemas/sim.params.schema.json",
+  "title": "ASRS Twin Simulation Parameters",
+  "type": "object",
+  "required": ["seed", "timeScale"],
+  "properties": {
+    "seed": { "type": "integer", "description": "随机种子，相同种子可复现演示" },
+    "timeScale": { "type": "number", "minimum": 0.1, "default": 1 },
+    "tickHz": { "type": "number", "minimum": 1, "default": 10, "description": "MockHub 推送频率" },
+    "scenario": {
+      "type": "string",
+      "description": "scenarios/ 下剧本文件名，可空（仅用随机占用）"
+    },
+    "occupancy": {
+      "type": "object",
+      "properties": {
+        "ratio": { "type": "number", "minimum": 0, "maximum": 1, "description": "有货货位比例" },
+        "refreshSeconds": { "type": "number", "minimum": 0 },
+        "pickCargoFromPack": { "type": "boolean", "default": true }
+      }
+    },
+    "agv": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "updateHz": { "type": "number" },
+        "patrol": {
+          "type": "array",
+          "description": "按 AGVId 的折线点；坐标单位与 layout equips.motion 一致（常为 mm）",
+          "items": {
+            "type": "object",
+            "required": ["agvId", "points"],
+            "properties": {
+              "agvId": { "type": "integer" },
+              "points": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["x", "y"],
+                  "properties": {
+                    "x": { "type": "number" },
+                    "y": { "type": "number" }
+                  }
+                }
+              },
+              "speedUnitsPerSec": { "type": "number" },
+              "loadAlongPath": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "craneTasks": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "intervalSeconds": { "type": "number" },
+        "pickSlotsFromLayout": { "type": "boolean", "default": true }
+      }
+    },
+    "inventory": {
+      "type": "object",
+      "properties": {
+        "pushSummary": { "type": "boolean", "default": true },
+        "emptyCountMode": {
+          "type": "string",
+          "enum": ["deriveFromOccupancy", "fixed"],
+          "default": "deriveFromOccupancy"
+        }
+      }
+    }
+  }
+}
