@@ -15,7 +15,8 @@
 - [ ] `features.agvRealtime`：有 AGV 则配 `equips[].motion` 与 `pack.agv.loadFrom`
 - [ ] `groups`：合并显示的线体/单元（layout 也可配）
 - [ ] 反控 HTTP：是否需要 `equipmentControlURL`
-- [ ] 货位命名：`codePattern`（三段 WMS / 拼接 AGV / 自由 ID）
+- [ ] 仿真：是否提供 `sim.params.json` / scenario（见 features/simulation.md）
+- [ ] 搭仓：layout 是否由 Scene Builder 导出并通过 schema
 
 ## 禁止
 

@@ -15,6 +15,11 @@ WebGL：
 
 路径：`{equipDataURL}`，示例 `http://{HOST}:44332/DT`（端口按现场）。
 
+## 仿真数据源
+
+现场用真 Hub；售前/搭仓验证用 `MockHubFeed`（见 `features/simulation.md`）。  
+契约方法名不变，Runtime 只认 `IDataFeed`，不在驱动里分支 isSim。
+
 ## Core（立库通用）
 
 ### 初始化 Invoke

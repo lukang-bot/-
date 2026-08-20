@@ -4,9 +4,10 @@
 
 ```
 Runtime/                          # 产品内核（跨项目，无货种词）
-├── Bootstrap/                    # Init、配置加载、UTF-8 BOM 剥离
+├── Bootstrap/
 ├── Net/
 │   ├── HubClient.cs              # 连接、Invoke/On；可选方法失败则跳过
+│   ├── IDataFeed.cs              # RealHubFeed | MockHubFeed
 │   └── HubMethodNames.cs         # ← contracts/DtHubMethods
 ├── Interaction/                  # 详见 INTERACTION.md
 │   ├── InteractableTarget.cs     # kind + identity
@@ -16,33 +17,35 @@ Runtime/                          # 产品内核（跨项目，无货种词）
 │   ├── InteractionRouter.cs      # Kind → Panel + Query
 │   └── HoverHighlightBinder.cs
 ├── Storage/
-│   ├── StorageOccupancy.cs       # ← contracts，rule 来自 pack
-│   ├── SlotRegistry.cs           # Code → 场景物体（读 layout）
-│   └── CargoVisualBinder.cs      # 占用 + cargoTypes → Prefab
 ├── Equip/
-│   ├── EquipBase.cs              # 可点、状态色；WebGL 用 BoxCollider
-│   ├── EquipBus.cs               # 按 layout.equips 注册驱动
-│   ├── CraneDriver.cs            # 可选
-│   ├── ConveyorDriver.cs         # 可选
-│   └── AgvDriver.cs              # 可选；见 features/agv-realtime.md
+│   ├── EquipBase.cs
+│   ├── EquipBus.cs
+│   ├── CraneDriver.cs
+│   ├── ConveyorDriver.cs
+│   └── AgvDriver.cs              # features/agv-realtime.md
 ├── Control/
-│   └── ReverseControlClient.cs   # 可选；HTTP 不是 Hub
 ├── Task/
-│   └── TaskPlayer.cs             # 点到点动画壳
 └── Ui/
-    ├── MainUiShell.cs
-    └── InfoPanels.cs             # 货位/设备/报警；反控按钮由 feature 决定
+
+Editor/SceneBuilder/              # 仅编辑器；features/scene-builder.md
+├── PaletteWindow.cs
+├── LayoutSerializer.cs
+└── LayoutValidator.cs
+
+Simulation/                       # features/simulation.md
+├── MockHubFeed.cs
+├── ScenarioPlayer.cs
+├── SimClock.cs
+└── SimHud.cs
 
 Layout/                           # 每现场一份
 ├── layout.json
-└── runtime.config.json           # 对应 StreamingAssets/config.json
+├── runtime.config.json
+└── sim.params.json               # 仅仿真
 
 IndustryPacks/
-├── generic/
-├── semiconductor-ingot/
-└── {your-pack}/
-
-ProjectOverlay/                   # 仅本现场：场景、美术、极少脚本
+scenarios/                        # 仿真剧本（可随标准库或项目）
+ProjectOverlay/
 ```
 
 ## 职责
@@ -51,12 +54,14 @@ ProjectOverlay/                   # 仅本现场：场景、美术、极少脚�
 |---|---|---|
 | InteractionRouter | 双击后按 Kind 开 Panel 并拉数 | 不解析网格 |
 | ClickColliderUtil | 挂/修 BoxCollider | 不用 MeshCollider 点击 |
-| HubClient | 拉全量、收推送 | 不解占用、不写死方法是否必须成功 |
+| HubClient / IDataFeed | 拉全量、收推送；仿真走 Mock | 不解占用、驱动内不写 isSim |
 | StorageOccupancy | 按 pack.rule 判断空/有货 | 不决定 Prefab、不写死 token |
 | CargoVisualBinder | match → Prefab，挂到货位 | 不写死货物名 |
 | SlotRegistry | layout.storageSlots + 场景 | 不调 WMS |
 | EquipBus | 按类型加载驱动 | 现场没有的设备不实例化 |
-| AgvDriver | 位姿跟踪、朝向、载货显隐 | 不规划路径；占用规则不写死 |
+| AgvDriver | 位姿跟踪、朝向、载货显隐 | 不规划路径 |
+| SceneBuilder | 拖拽写 layout.json | 不做调度与库存账 |
+| MockHubFeed | 按 SimParams/Scenario 推契约 DTO | 不替代真 WCS |
 | ReverseControlClient | POST pack 声明的路径 | 不进 SignalR |
 | TaskPlayer | 从 layout 点位做动画 | 不解析行业 KPI |
 
@@ -77,4 +82,5 @@ ProjectOverlay/                   # 仅本现场：场景、美术、极少脚�
 | mesWorkOrder | 无工单面板 |
 | wmsInOut | 无出入库/盘点面板 |
 
-新产品默认：货位可视化 / 报警 / KPI 开；AGV / 反控 / MES 关，现场有再开。
+新产品默认：货位可视化 / 报警 / KPI 开；AGV / 反控 / MES 关。  
+仿真推荐再开 `taskAnimation` +（有车时）`agvRealtime`，关反控/MES/出入库。
